@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   height: 40px;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +26,7 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   padding: 5px;
+  background-color: white;
 `;
 
 const Input = styled.input`
