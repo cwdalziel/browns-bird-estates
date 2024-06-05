@@ -66,7 +66,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>Brown Bird Estates</Logo>
+          <Logo>Browns Bird Estates</Logo>
         </Center>
         <Right>
           <MenuItem>REGISTER</MenuItem>

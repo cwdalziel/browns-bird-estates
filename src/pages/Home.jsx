@@ -5,11 +5,12 @@ import Slider from "../components/Slider";
 import Products from "../components/Products";
 import styled from "styled-components";
 import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 
 const Header = styled.h1`
   margin: 10px 0px;
   text-align: center;
-`
+`;
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <Header>Popular Products:</Header>
       <Products />
       <Newsletter />
+      <Footer />
     </div>
   );
 };
