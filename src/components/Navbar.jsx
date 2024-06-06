@@ -5,11 +5,14 @@ import styled from "styled-components";
 
 const Container = styled.div`
   height: 60px;
+  background-color: #D3AC8B;
+  border-radius: 5px;
+  margin-top: 10px;
 `;
 
 const Wrapper = styled.div`
   height: 40px;
-  padding: 10px 20px 10px 5px;
+  padding: 10px 20px 10px 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +28,7 @@ const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 7px;
   background-color: white;
 `;
 
