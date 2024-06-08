@@ -13,6 +13,7 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 5px;
+  margin-top: 10px;
 `;
 
 const Arrow = styled.div`
