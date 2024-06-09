@@ -4,14 +4,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  height: 60px;
+  height: 100px;
   background-color: #D3AC8B;
   border-radius: 5px;
   margin-top: 10px;
 `;
 
 const Wrapper = styled.div`
-  height: 40px;
+  height: 80px;
   padding: 10px 20px 10px 10px;
   display: flex;
   align-items: center;
@@ -28,12 +28,15 @@ const SearchContainer = styled.div`
   border: 0.5px solid lightgray;
   display: flex;
   align-items: center;
-  padding: 7px;
+  padding: 8px;
   background-color: white;
 `;
 
 const Input = styled.input`
   border: none;
+  outline: none;
+  padding: 5px;
+  margin-right: 5px;
 `;
 
 const Center = styled.div`
@@ -43,6 +46,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bold;
+  font-size: 50px;
 `;
 
 const Right = styled.div`
@@ -53,7 +57,7 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
 `;
@@ -65,7 +69,7 @@ const Navbar = () => {
         <Left>
           <SearchContainer>
             <Input />
-            <Search style={{ color: "gray", fontSize: 16 }} />
+            <Search style={{ color: "gray", fontSize: 20 }} />
           </SearchContainer>
         </Left>
         <Center>
