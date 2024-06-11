@@ -5,6 +5,7 @@ import {
 } from "@mui/icons-material";
 import styled from "styled-components";
 import { sliderItems } from "../data";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -14,6 +15,7 @@ const Container = styled.div`
   overflow: hidden;
   border-radius: 5px;
   margin-top: 10px;
+  ${mobile({ height: "40vh" })}
 `;
 
 const Arrow = styled.div`
@@ -52,6 +54,7 @@ const Arrow = styled.div`
   transition: all 1s ease;
   margin: auto;
   cursor: pointer;
+  ${mobile({ backgroundColor: "#ffffff3d", color: "white", top: "50px" })}
 `;
 
 const Wrapper = styled.div`
@@ -93,6 +96,7 @@ const Title = styled.h1`
   font-size: 70px;
   margin: 0;
   color: white;
+  ${mobile({ fontSize: "2.4rem", marginBottom: "5px" })}
 `;
 
 const Desc = styled.p`
@@ -100,6 +104,7 @@ const Desc = styled.p`
   font-weight: 500px;
   background-color: white;
   padding: 5px;
+  ${mobile({ display: "none"})}
 `;
 
 const Button = styled.button`

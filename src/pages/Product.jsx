@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
   background-color: #e9e9e9;
   border-radius: 5px;
   margin-top: 10px;
+  ${mobile({flexDirection: "column", padding: "10px" })}
 `;
 
 const ImgContainer = styled.div`
@@ -24,6 +26,7 @@ const Image = styled.img`
   height: 80vh;
   object-fit: cover;
   border-radius: 5px;
+  ${mobile({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
@@ -32,10 +35,12 @@ const InfoContainer = styled.div`
   padding: 0px 50px;
   background-color: white;
   border-radius: 5px;
+  ${mobile({ margin: "0px", marginTop: "10px", padding: "10px" })}
 `;
 
 const Title = styled.h1`
   font-weight: 200;
+  ${mobile({ marginTop: "0px" })}
 `;
 
 const Desc = styled.p`

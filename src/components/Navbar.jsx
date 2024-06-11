@@ -2,12 +2,14 @@ import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 100px;
-  background-color: #D3AC8B;
+  background-color: #d3ac8b;
   border-radius: 5px;
   margin-top: 10px;
+  ${mobile({ height: "50px" })}
 `;
 
 const Wrapper = styled.div`
@@ -16,6 +18,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${mobile({
+    height: "30px",
+    padding: "10px 0px",
+  })}
 `;
 
 const Left = styled.div`
@@ -30,6 +36,7 @@ const SearchContainer = styled.div`
   align-items: center;
   padding: 8px;
   background-color: white;
+  ${mobile({ padding: "4px", marginLeft: "10px" })}
 `;
 
 const Input = styled.input`
@@ -37,6 +44,7 @@ const Input = styled.input`
   outline: none;
   padding: 5px;
   margin-right: 5px;
+  ${mobile({ width: "40px", padding: "0px" })}
 `;
 
 const Center = styled.div`
@@ -47,6 +55,7 @@ const Center = styled.div`
 const Logo = styled.h1`
   font-weight: bold;
   font-size: 50px;
+  ${mobile({ fontSize: "1rem" })}
 `;
 
 const Right = styled.div`
@@ -54,12 +63,15 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  height: 110%;
+  ${mobile({ justifyContent: "flex-start", flex: "1.5", flexDirection: "column", flexWrap: "wrap"})}
 `;
 
 const MenuItem = styled.div`
   font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
+  ${mobile({ fontSize: "12px", marginLeft: "4px"})}
 `;
 
 const Navbar = () => {
@@ -68,7 +80,7 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <SearchContainer>
-            <Input />
+            <Input placeholder="Search" />
             <Search style={{ color: "gray", fontSize: 20 }} />
           </SearchContainer>
         </Left>

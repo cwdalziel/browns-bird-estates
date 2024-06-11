@@ -4,6 +4,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
@@ -27,13 +28,14 @@ const Top = styled.div`
 `;
 
 const TopButton = styled.button`
-  padding: 10px;
+  padding: ${(props) => props.type === "filled" ? "12px 16px" : "10px"};
   font-weight: 600;
   cursor: pointer;
   border-radius: 5px;
   border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) => props.type === "filled" && "#588764"};
   color: ${(props) => props.type === "filled" && "white"};
+  ${mobile({ margin: "0px 10px"})}
 `;
 
 const TopTexts = styled.div``;
@@ -42,11 +44,13 @@ const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
   margin: 0px 10px;
+  ${mobile({ display: "none" })}
 `;
 
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const Info = styled.div`
@@ -56,6 +60,7 @@ const Info = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ProductDetail = styled.div`
@@ -88,6 +93,7 @@ const PriceDetail = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  ${mobile({ flexDirection: "row", justifyContent: "space-between", marginTop: "10px" })}
 `;
 
 const ProductAmountContainer = styled.div`
@@ -99,6 +105,7 @@ const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
   margin-bottom: 20px;
+  ${mobile({ margin: "5px 15px" })}
 `;
 
 const ProductPrice = styled.div`
@@ -120,6 +127,7 @@ const Summary = styled.div`
   padding: 20px;
   margin-left: 10px;
   height: 50vh;
+  ${mobile({ marginLeft: "0px", marginTop: "10px" })}
 `;
 
 const SummaryTitle = styled.h1`
