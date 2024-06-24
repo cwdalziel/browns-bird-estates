@@ -6,6 +6,7 @@ import {
 import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile } from "../responsive";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -104,7 +105,7 @@ const Desc = styled.p`
   font-weight: 500px;
   background-color: white;
   padding: 5px;
-  ${mobile({ display: "none"})}
+  ${mobile({ display: "none" })}
 `;
 
 const Button = styled.button`
@@ -119,6 +120,8 @@ const Slider = () => {
     setSlideIndex(slideIndex === 0 ? 1 : 0);
   };
 
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Wrapper slideIndex={slideIndex}>
@@ -128,7 +131,13 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOP NOW</Button>
+              <Button
+                onClick={() => {
+                  navigate("/products/" + item.cat);
+                }}
+              >
+                SHOP NOW
+              </Button>
             </InfoContainer>
           </Slide>
         ))}
