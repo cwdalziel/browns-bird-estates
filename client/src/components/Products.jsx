@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -34,26 +33,20 @@ const Products = ({ category, sort }) => {
   }, [category]);
 
   useEffect(() => {
-    if(sort === "newest") {
-      setProducts(prev =>
-        [...prev].sort((a,b)=>a.createdAt - b.createdAt)
-      )
+    if (sort === "newest") {
+      setProducts((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+      );
     } else if (sort === "asc") {
-      setProducts(prev =>
-        [...prev].sort((a,b)=>a.price - b.price)
-      )
+      setProducts((prev) => [...prev].sort((a, b) => a.price - b.price));
     } else {
-      setProducts(prev =>
-        [...prev].sort((a,b)=>b.price - a.price)
-      )
+      setProducts((prev) => [...prev].sort((a, b) => b.price - a.price));
     }
-  }, [sort])
+  }, [sort]);
 
   return (
     <Container>
-      {category ? products.map((item) => (
-        <Product item={item} key={item.id} />
-      )) : products.slice(0,6).map((item) => (
+      {products.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

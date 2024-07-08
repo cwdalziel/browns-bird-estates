@@ -3,6 +3,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Info = styled.div`
@@ -29,7 +30,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: grey;
   position: relative;
-  &:hover ${Info}{
+  &:hover ${Info} {
     opacity: 1;
   }
 `;
@@ -58,6 +59,9 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Image src={item.img} />
@@ -65,7 +69,11 @@ const Product = ({ item }) => {
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
-        <Icon>
+        <Icon
+          onClick={() => {
+            navigate("/product/" + item._id);
+          }}
+        >
           <SearchOutlined />
         </Icon>
         <Icon>

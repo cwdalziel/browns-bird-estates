@@ -5,6 +5,9 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
 
 const Container = styled.div``;
 
@@ -14,7 +17,7 @@ const Wrapper = styled.div`
   background-color: #e9e9e9;
   border-radius: 5px;
   margin-top: 10px;
-  ${mobile({flexDirection: "column", padding: "10px" })}
+  ${mobile({ flexDirection: "column", padding: "10px" })}
 `;
 
 const ImgContainer = styled.div`
@@ -84,34 +87,55 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 500;
   border-radius: 10px;
-  &:hover{
+  &:hover {
     background-color: #ececec;
   }
 `;
 
 const Product = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(await res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [id]);
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1)
+    } else {
+      setQuantity(quantity + 1)
+    }
+  }
+
   return (
     <Container>
       <Announcement />
       <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.redd.it/gk45grax5w061.jpg" />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Gangster Sponge</Title>
-          <Desc>
-            dwad h dhwhu ahu huiduihw aiuhh uiahuwi hud hh hui hduwlahd liuaw
-            hdu hawhlaiw duaw uilhluh dawhdh uilhdawudh awu dhil
-            dwbyhdagdywkgdkagw dgy ygukag uykwdgawgyuk dgykuawd gygyudaw gyuak
-            gwu dygkawdg gawy gykadw ygukawd gyukdawgkyu
-          </Desc>
-          <Price>$ 20</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.desc}</Desc>
+          <Price>$ {product.price}</Price>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove style = {{cursor: "pointer"}} onClick={()=>handleQuantity("dec")}/>
+              <Amount>{quantity}</Amount>
+              <Add style = {{cursor: "pointer"}} onClick={()=>handleQuantity("inc")}/>
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
