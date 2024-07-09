@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material";
 import { mobile } from "../responsive";
+import { useSelector } from "react-redux";
 
 const Container = styled.div``;
 
@@ -28,14 +29,14 @@ const Top = styled.div`
 `;
 
 const TopButton = styled.button`
-  padding: ${(props) => props.type === "filled" ? "12px 16px" : "10px"};
+  padding: ${(props) => (props.type === "filled" ? "12px 16px" : "10px")};
   font-weight: 600;
   cursor: pointer;
   border-radius: 5px;
   border: ${(props) => props.type === "filled" && "none"};
   background-color: ${(props) => props.type === "filled" && "#588764"};
   color: ${(props) => props.type === "filled" && "white"};
-  ${mobile({ margin: "0px 10px"})}
+  ${mobile({ margin: "0px 10px" })}
 `;
 
 const TopTexts = styled.div``;
@@ -93,7 +94,11 @@ const PriceDetail = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  ${mobile({ flexDirection: "row", justifyContent: "space-between", marginTop: "10px" })}
+  ${mobile({
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: "10px",
+  })}
 `;
 
 const ProductAmountContainer = styled.div`
@@ -159,6 +164,7 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Announcement />
@@ -175,67 +181,52 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.redd.it/gk45grax5w061.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> GRANGSTER SPONGE
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> GRANGSTER SPONGE
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://i.redd.it/gk45grax5w061.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> GRANGSTER SPONGE
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> GRANGSTER SPONGE
-                  </ProductId>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.products.map((product, index) => (
+              <>
+                {index !== 0 && <Hr />}
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.img} />
+                    <Details>
+                      <ProductName>
+                        <b>Product:</b> {product.title}
+                      </ProductName>
+                      <ProductId>
+                        <b>ID:</b> {product._id}
+                      </ProductId>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Remove />
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                      $ {product.price * product.quantity}
+                    </ProductPrice>
+                  </PriceDetail>
+                </Product>
+              </>
+            ))}
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5</SummaryItemPrice>
+              <SummaryItemPrice>$ PLACEHHOLDER</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5</SummaryItemPrice>
+              <SummaryItemPrice>$ PLACEHHOLDER</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

@@ -8,6 +8,8 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 
@@ -99,6 +101,8 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -113,11 +117,15 @@ const Product = () => {
 
   const handleQuantity = (type) => {
     if (type === "dec") {
-      quantity > 1 && setQuantity(quantity - 1)
+      quantity > 1 && setQuantity(quantity - 1);
     } else {
-      setQuantity(quantity + 1)
+      setQuantity(quantity + 1);
     }
-  }
+  };
+
+  const handleClick = () => {
+    dispatch(addProduct({ ...product, quantity }));
+  };
 
   return (
     <Container>
@@ -133,11 +141,17 @@ const Product = () => {
           <Price>$ {product.price}</Price>
           <AddContainer>
             <AmountContainer>
-              <Remove style = {{cursor: "pointer"}} onClick={()=>handleQuantity("dec")}/>
+              <Remove
+                style={{ cursor: "pointer" }}
+                onClick={() => handleQuantity("dec")}
+              />
               <Amount>{quantity}</Amount>
-              <Add style = {{cursor: "pointer"}} onClick={()=>handleQuantity("inc")}/>
+              <Add
+                style={{ cursor: "pointer" }}
+                onClick={() => handleQuantity("inc")}
+              />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
