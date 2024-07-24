@@ -1,5 +1,10 @@
+//idk why it needs this
+const dotenv = require("dotenv");
+dotenv.config();
+
 const router = require("express").Router();
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const KEY = process.env.STRIPE_SECRET;
+const stripe = require("stripe")(KEY);
 
 router.post("/payment", (req, res) => {
   stripe.charges.create(
@@ -12,7 +17,7 @@ router.post("/payment", (req, res) => {
       if (stripeErr) {
         res.status(500).json(stripeErr);
       } else {
-        res.status(200).json(stripeRes);l
+        res.status(200).json(stripeRes);
       }
     }
   );

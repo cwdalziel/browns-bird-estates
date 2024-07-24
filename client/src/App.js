@@ -9,6 +9,7 @@ import {
   redirect,
   RouterProvider,
 } from "react-router-dom";
+import Success from "./pages/Success";
 
 const App = () => {
   const user = true;
@@ -29,6 +30,10 @@ const App = () => {
     {
       path: "/cart",
       element: <Cart />,
+    },
+    {
+      path: "/success",
+      element: <Success />,
     },
     {
       path: "/login",
