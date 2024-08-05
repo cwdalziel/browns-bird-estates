@@ -78,7 +78,7 @@ const Footer = () => {
     <Container>
       <Left>
         <Logo>Browns Bird Estates</Logo>
-        <Desc>The coolest and best bird houses ever AF fire emoji</Desc>
+        <Desc>The coolest and best bird houses ever</Desc>
         <SocialContainer>
           <SocialIcon>
             <Facebook />
